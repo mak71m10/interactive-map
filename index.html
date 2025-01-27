@@ -53,12 +53,15 @@
 <body>
     <div class="map-container">
         <svg viewBox="0 0 1200 800" id="map">
-            <!-- Здесь будут path элементы для регионов -->
+                <!-- Добавьте эту строку первой внутри SVG -->
+            <image href="URL_ВАШЕЙ_КАРТИНКИ" width="100%" height="100%"/>
+    
+                <!-- Дальше идут path элементы для регионов -->
             <path class="region" 
-                  d="M400,200 L500,200 L500,300 L400,300 Z" 
-                  data-name="Империя"
-                  data-url="https://your-wiki.fandom.com/wiki/Империя"/>
-            <!-- Добавьте остальные регионы -->
+              d="M400,200 L500,200 L500,300 L400,300 Z" 
+              data-name="Империя"
+              data-url="https://your-wiki.fandom.com/wiki/Империя"/>
+            <!-- Остальные регионы -->
         </svg>
         <div class="tooltip" id="tooltip"></div>
     </div>
