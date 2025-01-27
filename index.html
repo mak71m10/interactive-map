@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная Карта Мира</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .map-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .region {
+            fill: transparent;
+            stroke: white;
+            stroke-width: 1;
+            transition: fill 0.3s;
+            cursor: pointer;
+        }
+        
+        .region:hover {
+            fill: rgba(255, 255, 255, 0.2);
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            pointer-events: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="map-container">
+        <svg viewBox="0 0 1200 800" id="map">
+            <!-- Здесь будут path элементы для регионов -->
+            <path class="region" 
+                  d="M400,200 L500,200 L500,300 L400,300 Z" 
+                  data-name="Империя"
+                  data-url="https://your-wiki.fandom.com/wiki/Империя"/>
+            <!-- Добавьте остальные регионы -->
+        </svg>
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <script>
+        const tooltip = document.getElementById('tooltip');
+        const regions = document.querySelectorAll('.region');
+
+        regions.forEach(region => {
+            region.addEventListener('mousemove', (e) => {
+                tooltip.style.display = 'block';
+                tooltip.style.left = e.pageX + 10 + 'px';
+                tooltip.style.top = e.pageY + 10 + 'px';
+                tooltip.textContent = region.dataset.name;
+            });
+
+            region.addEventListener('mouseout', () => {
+                tooltip.style.display = 'none';
+            });
+
+            region.addEventListener('click', () => {
+                window.location.href = region.dataset.url;
+            });
+        });
+    </script>
+</body>
+</html>
